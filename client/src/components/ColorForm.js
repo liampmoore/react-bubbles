@@ -24,6 +24,19 @@ const ColorForm = ({handleSubmit, handleChange, formValue, handleCancel, title})
               value={formValue.code.hex}
             />
           </label>
+          <label>
+            color picker:
+            <input
+                type='color'
+                onChange={e =>
+                handleChange({
+                  ...formValue,
+                  code: { hex: e.target.value }
+                })
+              }
+              value={formValue.code.hex}
+            />
+          </label>
           <div className="button-row">
             <button type="submit">save</button>
             <button onClick={() => handleCancel(false)}>cancel</button>
