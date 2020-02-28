@@ -21,6 +21,11 @@ const ColorList = ({ colors, updateColors }) => {
     setColorToEdit(color);
   };
 
+  const cancelNewColor = (boolean) => {
+    setCreating(boolean)
+    setNewColor({...initialColor})
+  }
+
   const saveEdit = e => {
     e.preventDefault();
     // Make a put request to save your updated color
@@ -90,7 +95,7 @@ const ColorList = ({ colors, updateColors }) => {
       { (!creating && !editing)&& <div className="button-row">
             <button onClick={() => setCreating(true)}>add new color</button>
           </div>}
-      { creating && <ColorForm handleSubmit={addColor} handleChange={setNewColor} formValue={newColor} handleCancel={setCreating} title='new color' />}
+      { creating && <ColorForm handleSubmit={addColor} handleChange={setNewColor} formValue={newColor} handleCancel={cancelNewColor} title='new color' />}
     </div>
   );
 };
