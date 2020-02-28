@@ -27,9 +27,13 @@ In this project you will create a login page and request a token from the server
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 - [ ] Explain what a token is used for.
+    A token is used for authentication. When a user logs in to an application, the server sends back a token. The client then sends the token along with any requests it makes to the server that require the user to be logged in. It is an encrypted string that the server can use to verify the user's identity.
 - [ ] What steps can you take in your web apps to keep your data secure?
+    I can use tokens for authentication, be careful about where I save sensitive information in the application, and heavily research best practices when using new authentication methods. Right now I know that we are using web tokens in localstorage just to get acquainted with authentication in general. As I understand from what I've read so far, localstorage may be vulnerable to cross-site scripting attacks. Secure authentication is definitely a crucial part of any app, and it's something that I'll need to continue to research and discuss with my teammates in any future project.
 - [ ] Describe how web servers work.
+    A web server is a process on a machine that listens for http requests and sends a response back to the browser. A typical web server sends back html based on the page. A node.js web server running express framework sends back a javascript object.
 - [ ] Which HTTP methods can be mapped to the CRUD acronym that we use when interfacing with APIs/Servers.
+    Create, read, update, delete. The corresponding http requests are: POST, GET, PUT, DELETE.
 
 
 ## Project Set Up
