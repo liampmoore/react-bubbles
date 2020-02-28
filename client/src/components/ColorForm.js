@@ -1,8 +1,8 @@
 import React from 'react';
 
-const ColorForm = ({handleSubmit, handleChange, formValue, handleCancel}) => {
-    return (<form onSubmit={handleSubmit}>
-          <legend>edit color</legend>
+const ColorForm = ({handleSubmit, handleChange, formValue, handleCancel, title}) => {
+    return (<form onSubmit={e => handleSubmit(e)}>
+          <legend>{title}</legend>
           <label>
             color name:
             <input

@@ -12,6 +12,8 @@ const ColorList = ({ colors, updateColors }) => {
   console.log(colors);
   const [editing, setEditing] = useState(false);
   const [colorToEdit, setColorToEdit] = useState({...initialColor});
+
+  const [creating, setCreating] = useState(false);
   const [newColor, setNewColor] = useState({...initialColor})
 
   const editColor = color => {
@@ -47,6 +49,16 @@ const ColorList = ({ colors, updateColors }) => {
       .catch(err => console.error(err))
   };
 
+  const addColor = (e) => {
+    e.preventDefault()
+    axiosWithAuth()
+      .post(`/api/colors`, newColor)
+      .then(res => {
+        updateColors(res.data)
+      })
+      .catch(err => console.error(err))
+  }
+
   return (
     <div className="colors-wrap">
       <p>colors</p>
@@ -72,11 +84,13 @@ const ColorList = ({ colors, updateColors }) => {
       </ul>
       {editing && (
 
-        <ColorForm handleSubmit={saveEdit} handleChange={setColorToEdit} formValue={colorToEdit} handleCancel={setEditing} />
+        <ColorForm handleSubmit={saveEdit} handleChange={setColorToEdit} formValue={colorToEdit} handleCancel={setEditing} title='edit color' />
         
       )}
-      <div className="spacer" />
-      {/* stretch - build another form here to add a color */}
+      { (!creating && !editing)&& <div className="button-row">
+            <button onClick={() => setCreating(true)}>add new color</button>
+          </div>}
+      { creating && <ColorForm handleSubmit={addColor} handleChange={setNewColor} formValue={newColor} handleCancel={setCreating} title='new color' />}
     </div>
   );
 };
